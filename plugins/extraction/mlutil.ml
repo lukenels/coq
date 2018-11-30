@@ -129,7 +129,7 @@ let rec mgu = function
   | Taxiom, Taxiom -> ()
   | _ -> raise Impossible
 
-let skip_typing () = lang () == Scheme || is_extrcompute ()
+let skip_typing () = lang () == Racket || lang () == Scheme || is_extrcompute ()
 
 let needs_magic p =
   if skip_typing () then false
@@ -1128,7 +1128,7 @@ and simpl_case o typ br e =
       simpl o (named_lams ids (MLcase (typ, ast_lift n e, br)))
     else
       (* Can we merge several branches as the same constant or function ? *)
-      if lang() == Scheme || is_custom_match br
+      if lang() == Scheme || lang() == Racket || is_custom_match br
       then MLcase (typ, e, br)
       else match factor_branches o typ br with
 	| Some (f,ints) when Int.equal (Int.Set.cardinal ints) (Array.length br) ->

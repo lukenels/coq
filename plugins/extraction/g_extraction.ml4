@@ -46,6 +46,7 @@ let pr_language = function
   | Haskell -> str "Haskell"
   | Scheme -> str "Scheme"
   | JSON -> str "JSON"
+  | Racket -> str "Racket"
 
 let warn_deprecated_ocaml_spelling =
   CWarnings.create ~name:"deprecated-ocaml-spelling" ~category:"deprecated"
@@ -59,6 +60,7 @@ PRINTED BY pr_language
 | [ "Haskell" ] -> [ Haskell ]
 | [ "Scheme" ] -> [ Scheme ]
 | [ "JSON" ] -> [ JSON ]
+| [ "Racket" ] -> [ Racket ]
 END
 
 (* Extraction commands *)

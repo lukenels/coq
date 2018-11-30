@@ -95,7 +95,7 @@ let begins_with_CoqXX s =
   with Not_found -> false
 
 let unquote s =
-  if lang () != Scheme then s
+  if lang () != Scheme && lang () != Racket then s
   else String.map (fun c -> if c == '\'' then '~' else c) s
 
 let rec qualify delim = function
@@ -602,6 +602,7 @@ let pp_global k r =
     let rls = List.rev ls in (* for what come next it's easier this way *)
     match lang () with
       | Scheme -> unquote s (* no modular Scheme extraction... *)
+      | Racket -> unquote s
       | JSON -> dottify (List.map unquote rls)
       | Haskell -> if modular () then pp_haskell_gen k mp rls else s
       | Ocaml -> pp_ocaml_gen k mp rls (Some l)
